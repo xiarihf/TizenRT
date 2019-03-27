@@ -64,7 +64,7 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <sched.h>
-#include <setjmp.h>
+//#include <setjmp.h>
 
 #include "iperf.h"
 #include "iperf_api.h"

@@ -42,7 +42,7 @@
  * file for complete information.
  */
 #include <errno.h>
-#include <setjmp.h>
+//#include <setjmp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

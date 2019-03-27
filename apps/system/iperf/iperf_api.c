@@ -69,7 +69,7 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <sched.h>
-#include <setjmp.h>
+//#include <setjmp.h>
 #include <stdarg.h>
 
 #if defined(HAVE_CPUSET_SETAFFINITY)

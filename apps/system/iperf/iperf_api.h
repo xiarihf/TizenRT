@@ -45,7 +45,7 @@
 #define        __IPERF_API_H
 
 #include <sys/time.h>
-#include <setjmp.h>
+//#include <setjmp.h>
 
 struct iperf_test;
 struct iperf_stream_result;
@@ -57,7 +57,8 @@ struct iperf_stream;
 #define Pudp SOCK_DGRAM
 #define Psctp 12
 #define DEFAULT_UDP_BLKSIZE 8192
-#define DEFAULT_TCP_BLKSIZE (128 * 1024)	/* default read/write block size */
+//#define DEFAULT_TCP_BLKSIZE (128 * 1024)	/* default read/write block size */
+#define DEFAULT_TCP_BLKSIZE (32 * 1024)   /*only 64KB remain after wifi bringing up*/
 #define DEFAULT_SCTP_BLKSIZE (64 * 1024)
 
 /* short option equivalents, used to support options that only have long form */
@@ -249,7 +250,7 @@ void iperf_on_test_start(struct iperf_test *);
 void iperf_on_connect(struct iperf_test *);
 void iperf_on_test_finish(struct iperf_test *);
 
-extern jmp_buf env;
+//extern jmp_buf env;
 
 /* Client routines. */
 int iperf_run_client(struct iperf_test *);

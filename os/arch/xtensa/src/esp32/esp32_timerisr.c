@@ -187,6 +187,14 @@ static int esp32_timerisr(int irq, uint32_t *regs, FAR void *arg)
  *
  ****************************************************************************/
 
+static uint32_t g_board_clock = BOARD_CLOCK_FREQUENCY;
+
+void xtensa_chang_board_clock(uint32_t board_clock)
+{
+	g_board_clock = board_clock; 
+}
+
+
 void xtensa_timer_initialize(void)
 {
 
@@ -198,7 +206,7 @@ void xtensa_timer_initialize(void)
 	 *   divisor = BOARD_CLOCK_FREQUENCY / ticks_per_sec
 	 */
 
-	divisor = BOARD_CLOCK_FREQUENCY / CLOCKS_PER_SEC;
+	divisor = g_board_clock / CLOCKS_PER_SEC;
 	g_tick_divisor = divisor;
 
 	/* Set up periodic timer */
@@ -219,3 +227,15 @@ void xtensa_timer_initialize(void)
 	up_enable_irq(ESP32_CPUINT_TIMER0);
 
 }
+
+void xtensa_timer_uninitialize(void)
+{
+	/* Attach the timer interrupt */
+
+	(void)irq_detach(XTENSA_IRQ_TIMER0);
+
+	/* Enable the timer 0 CPU interrupt. */
+
+	up_disable_irq(ESP32_CPUINT_TIMER0);
+}
+
